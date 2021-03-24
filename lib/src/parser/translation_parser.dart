@@ -115,7 +115,7 @@ class TranslationParser {
         throw Exception('Placeholder $placeholderName already declared');
       }
       placeholders[placeholderName] =
-          (ArbResourcePlaceholder(name: placeholderName, type: 'text'));
+          (ArbResourcePlaceholder(name: placeholderName, type: 'String'));
     });
     return placeholders.values.toList();
   }
