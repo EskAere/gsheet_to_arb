@@ -60,9 +60,6 @@ class ArbResource {
       {this.description = '', this.context = '', this.placeholders = const []})
       : key = key,
         value = value {
-    // Possible values are "text", "image", "css"
-    attributes['type'] = 'Text';
-
     if (placeholders != null && placeholders.isNotEmpty) {
       attributes['placeholders'] = _formatPlaceholders(placeholders);
     }
@@ -76,14 +73,17 @@ class ArbResource {
     }
   }
 
-  Map<String, Object> _formatPlaceholders(
-      List<ArbResourcePlaceholder> placeholders) {
+  Map<String, Object> _formatPlaceholders(List<ArbResourcePlaceholder> placeholders) {
     final map = <String, Object>{};
 
     placeholders.forEach((placeholder) {
       final placeholderArgs = <String, Object>{};
       if (placeholder.type != null) {
         placeholderArgs['type'] = placeholder.type;
+      }
+
+      if (placeholder.format != null) {
+        placeholderArgs['format'] = placeholder.format;
       }
       map[placeholder.name] = placeholderArgs;
     });
@@ -92,11 +92,11 @@ class ArbResource {
 }
 
 class ArbResourcePlaceholder {
-  static String typeText = 'text';
   static String typeNum = 'num';
 
   final String name;
   final String type;
+  final String format;
   final String description;
   final String example;
 
@@ -105,6 +105,7 @@ class ArbResourcePlaceholder {
     this.type,
     this.description,
     this.example,
+    this.format,
   });
 }
 

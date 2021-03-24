@@ -72,7 +72,7 @@ class PluralsParser {
       _key = caseKey;
       _resource = resource;
       _placeholders[_countPlaceholder] = ArbResourcePlaceholder(
-          name: _countPlaceholder, description: 'plural count', type: 'num');
+          name: _countPlaceholder, description: 'plural count', type: 'num', format : 'compact');
       addPlaceholders(resource.placeholders);
       _values[pluralCase] = resource.value;
       return Consumed();
@@ -89,7 +89,7 @@ class PluralsParser {
       _resource = resource;
       _placeholders.clear();
       _placeholders[_countPlaceholder] = ArbResourcePlaceholder(
-          name: _countPlaceholder, description: 'plural count', type: 'num');
+          name: _countPlaceholder, description: 'plural count', type: 'num', format : 'compact');
       addPlaceholders(resource.placeholders);
       _values.clear();
       _values[pluralCase] = resource.value;
